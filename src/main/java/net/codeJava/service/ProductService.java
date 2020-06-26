@@ -15,11 +15,11 @@ public class ProductService {
 	@Autowired
 	private ProductRepository proRepository;
 	
-	public List<Product> listall(){
+	public List<Product> listallProduct(){
 		return proRepository.findAll();
 	}
 	
-	public void save(Product product) {
+	public void saveProduct(Product product) {
 		proRepository.save(product);
 	}
 	
@@ -27,4 +27,7 @@ public class ProductService {
 		return proRepository.findById(id).get();
 	}
 	
+	public void deleteProduct(Long id) {
+		proRepository.deleteById(id);
+	}
 }

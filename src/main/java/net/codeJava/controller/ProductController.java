@@ -24,7 +24,7 @@ public class ProductController {
 	
 	@RequestMapping
 	public String viewHomePage(Model model) {
-		List<Product> listProducts = productService.listall();
+		List<Product> listProducts = productService.listallProduct();
 		model.addAttribute("listProducts", listProducts);
 		return "index";
 	}
@@ -38,19 +38,24 @@ public class ProductController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveProduct(@ModelAttribute("product") Product product) {
-		productService.save(product);
+		productService.saveProduct(product);
 		return "redirect:/";		
 	}
 	
 	
 	@RequestMapping("/edit/{id}")
-	public String showNewProductForm(@PathVariable(name = "id") Long id) {
+	public ModelAndView showNewProductForm(@PathVariable(name = "id") Long id) {
 		ModelAndView mav= new ModelAndView("edit_product");
 		
 		Product product = productService.getProduct(id);
 		mav.addObject("product", product);
-		return mav.getViewName();		
+		return mav;		
 	}
 	
+	@RequestMapping("/delete/{id}")
+	public String deleteProduct(@PathVariable(name = "id") Long id) {
+		productService.deleteProduct(id);
+		return "redirect:/";		
+	}
 	
 }

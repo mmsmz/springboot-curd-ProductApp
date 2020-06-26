@@ -30,10 +30,10 @@
 					<td th:text="${project.price}">Price</td>
 					<td>
 						<a th:href="@{'/edit/' + ${project.id}}">Edit</a>
-					</td>
-						<td>
+						&nbsp;&nbsp;&nbsp;
 						<a th:href="@{'/delete/' + ${project.id}}">Delete</a>
 					</td>
+					
 				</tr>
 			</tbody>
 		</Table>
